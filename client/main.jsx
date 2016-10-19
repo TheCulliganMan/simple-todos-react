@@ -3,8 +3,10 @@ import { Meteor } from 'meteor/meteor';
 import { render } from 'react-dom';
 
 import '../imports/startup/accounts-config.js';
-import App from '../imports/ui/App.jsx';
+import Nav from '../imports/ui/Nav.jsx';
+import Body from '../imports/ui/Body.jsx';
 
 Meteor.startup(() => {
-  render(<App />, document.getElementById('render-target'));
+  render(<Nav />, document.getElementById('nav-target'));
+  render(<Body />, document.getElementById('body-target'));
 });
