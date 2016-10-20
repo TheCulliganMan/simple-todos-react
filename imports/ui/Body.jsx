@@ -19,11 +19,17 @@ class Body extends Component {
   }
 
   getLocation(){
-    navigator.geolocation.watchPosition(function(position) {
-      //const text = position.coords.latitude + " " + position.coords.longitude
-      const text = "https://maps.googleapis.com/maps/api/staticmap?center=" + position.coords.latitude + "," + position.coords.longitude + "&zoom=13&size=300x300&sensor=false&markers=color:red%7C" + position.coords.latitude + "," + position.coords.longitude;
-      Meteor.call('tasks.insert', text);
-    });
+    function repeatLog(){
+      navigator.geolocation.watchPosition(function(position) {
+        //const text = position.coords.latitude + " " + position.coords.longitude
+        const text = "https://maps.googleapis.com/maps/api/staticmap?center=" + position.coords.latitude + "," + position.coords.longitude + "&zoom=13&size=300x300&sensor=false&markers=color:red%7C" + position.coords.latitude + "," + position.coords.longitude;
+        Meteor.call('tasks.insert', text);
+      });
+    }
+    (function(){
+        repeatLog()
+        setTimeout(arguments.callee, 5*60*1000); // Log every 5 minutes
+    })();
   }
 
   handleSubmit(event) {
@@ -80,7 +86,7 @@ class Body extends Component {
               Hide Completed
             </label>
             <button className="btn btn-primary btn" data-title="Delete" onClick={this.getLocation}>
-              <span className="glyphicon glyphicon-map-marker"></span>
+              Start Location Grab <span className="glyphicon glyphicon-map-marker"></span>
             </button>
           </div>
         </header>
