@@ -69,7 +69,7 @@ class Body extends Component {
         <header>
           <div className="btn-group">
             <button className="btn btn-primary" type="button">
-              Messages <span className="badge">{this.props.incompleteCount}</span>
+              Unchecked Locations <span className="badge">{this.props.incompleteCount}</span>
             </button>
             <label className="hide-completed btn btn-primary">
               <input type="checkbox"
@@ -77,22 +77,11 @@ class Body extends Component {
                     checked={this.state.hideCompleted}
                     onClick={this.toggleHideCompleted.bind(this)}
                     autoComplete="off" />
-              Hide Completed Tasks
+              Hide Completed
             </label>
             <button className="btn btn-primary btn" data-title="Delete" onClick={this.getLocation}>
               <span className="glyphicon glyphicon-map-marker"></span>
             </button>
-          </div>
-          <div>
-            { this.props.currentUser ?
-              <form className="new-task" onSubmit={this.handleSubmit.bind(this)} >
-                <input
-                  type="text"
-                  ref="textInput"
-                  placeholder="Type to add new tasks"
-                />
-              </form> : ''
-            }
           </div>
         </header>
         <div>

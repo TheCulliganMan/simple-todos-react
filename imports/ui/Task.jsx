@@ -24,7 +24,7 @@ export default class Task extends Component {
       checked: this.props.task.checked,
       private: this.props.task.private,
     });
-    console.log(this.props.task);
+    
     return (
       <tr>
         <td>
