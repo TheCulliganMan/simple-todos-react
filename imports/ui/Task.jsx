@@ -26,28 +26,36 @@ export default class Task extends Component {
     });
 
     return (
-      <li className={taskClassName}>
-        <button className="delete" onClick={this.deleteThisTask.bind(this)}>
-          &times;
-        </button>
-
-        <input
-          type="checkbox"
-          readOnly
-          checked={this.props.task.checked}
-          onClick={this.toggleChecked.bind(this)}
-        />
-
-        { this.props.showPrivateButton ? (
-          <button className="toggle-private" onClick={this.togglePrivate.bind(this)}>
-            { this.props.task.private ? 'Private' : 'Public' }
+      <tr>
+        <td>
+          <input
+            type="checkbox"
+            readOnly
+            checked={this.props.task.checked}
+            onClick={this.toggleChecked.bind(this)}
+          />
+        </td>
+        <td>
+          <span className="text">
+            <strong>{this.props.task.username}</strong>
+          </span>
+        </td>
+        <td>
+          {this.props.task.text}
+        </td>
+        <td>
+          { this.props.showPrivateButton ? (
+            <button className={ this.props.task.private ? 'toggle-private btn-xs btn-primary' : 'toggle-private btn-xs btn-warning' } onClick={this.togglePrivate.bind(this)}>
+              { this.props.task.private ? 'Private' : 'Public' }
+            </button>
+          ) : ''}
+        </td>
+        <td className={taskClassName}>
+          <button className="btn btn-danger btn-xs" data-title="Delete" onClick={this.deleteThisTask.bind(this)}>
+            <span className="glyphicon glyphicon-trash"></span>
           </button>
-        ) : ''}
-
-        <span className="text">
-          <strong>{this.props.task.username}</strong>: {this.props.task.text}
-        </span>
-      </li>
+        </td>
+      </tr>
     );
   }
 }

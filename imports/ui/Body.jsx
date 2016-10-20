@@ -6,7 +6,7 @@ import { createContainer } from 'meteor/react-meteor-data';
 import { Tasks } from '../api/tasks.js';
 
 import Task from './Task.jsx';
-import AccountsUIWrapper from './AccountsUIWrapper.jsx';
+
 
 // App component - represents the whole app
 class Body extends Component {
@@ -57,9 +57,13 @@ class Body extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div>
         <header>
-          <h1>Todo List ({this.props.incompleteCount})</h1>
+          <div>
+            <button className="btn btn-primary" type="button">
+              Messages <span className="badge">{this.props.incompleteCount}</span>
+            </button>
+          </div>
 
           <label className="hide-completed">
             <input
@@ -70,8 +74,6 @@ class Body extends Component {
             />
             Hide Completed Tasks
           </label>
-
-          <AccountsUIWrapper />
 
           { this.props.currentUser ?
             <form className="new-task" onSubmit={this.handleSubmit.bind(this)} >
@@ -84,9 +86,12 @@ class Body extends Component {
           }
         </header>
 
-        <ul>
-          {this.renderTasks()}
-        </ul>
+        <table className="table table-bordred table-striped">
+          <thead></thead>
+          <tbody>
+            {this.renderTasks()}
+          </tbody>
+        </table>
       </div>
     );
   }
