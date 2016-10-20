@@ -59,33 +59,32 @@ class Body extends Component {
     return (
       <div>
         <header>
-          <div>
+          <div className="btn-group">
             <button className="btn btn-primary" type="button">
               Messages <span className="badge">{this.props.incompleteCount}</span>
             </button>
+            <label className="hide-completed btn btn-primary">
+              <input type="checkbox"
+                    readOnly
+                    checked={this.state.hideCompleted}
+                    onClick={this.toggleHideCompleted.bind(this)}
+                    autoComplete="off" />
+              Hide Completed Tasks
+            </label>
           </div>
-
-          <label className="hide-completed">
-            <input
-              type="checkbox"
-              readOnly
-              checked={this.state.hideCompleted}
-              onClick={this.toggleHideCompleted.bind(this)}
-            />
-            Hide Completed Tasks
-          </label>
-
-          { this.props.currentUser ?
-            <form className="new-task" onSubmit={this.handleSubmit.bind(this)} >
-              <input
-                type="text"
-                ref="textInput"
-                placeholder="Type to add new tasks"
-              />
-            </form> : ''
-          }
+          <div>
+            { this.props.currentUser ?
+              <form className="new-task" onSubmit={this.handleSubmit.bind(this)} >
+                <input
+                  type="text"
+                  ref="textInput"
+                  placeholder="Type to add new tasks"
+                />
+              </form> : ''
+            }
+          </div>
         </header>
-        <div className='container'>
+        <div>
           <table className="table table-bordred table-striped">
             <thead>
               <tr>
