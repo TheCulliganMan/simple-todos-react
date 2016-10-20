@@ -24,7 +24,7 @@ export default class Task extends Component {
       checked: this.props.task.checked,
       private: this.props.task.private,
     });
-
+    console.log(this.props.task);
     return (
       <tr>
         <td>
@@ -41,7 +41,8 @@ export default class Task extends Component {
           </span>
         </td>
         <td>
-          {this.props.task.text}
+          <img src={this.props.task.text} />
+          <p>{this.props.task.createdAt.toTimeString()}</p>
         </td>
         <td>
           { this.props.showPrivateButton ? (
