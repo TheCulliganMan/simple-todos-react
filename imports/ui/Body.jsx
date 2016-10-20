@@ -85,13 +85,22 @@ class Body extends Component {
             </form> : ''
           }
         </header>
-
-        <table className="table table-bordred table-striped">
-          <thead></thead>
-          <tbody>
-            {this.renderTasks()}
-          </tbody>
-        </table>
+        <div className='container'>
+          <table className="table table-bordred table-striped">
+            <thead>
+              <tr>
+                <th>Complete</th>
+                <th>User</th>
+                <th>Task</th>
+                <th>Privacy</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.renderTasks()}
+            </tbody>
+          </table>
+        </div>
       </div>
     );
   }
