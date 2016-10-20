@@ -6,6 +6,7 @@ import { createContainer } from 'meteor/react-meteor-data';
 import { Tasks } from '../api/tasks.js';
 
 import Task from './Task.jsx';
+import CountdownTimer from './Timer.jsx';
 
 
 // App component - represents the whole app
@@ -16,20 +17,6 @@ class Body extends Component {
     this.state = {
       hideCompleted: false,
     };
-  }
-
-  getLocation(){
-    function repeatLog(){
-      navigator.geolocation.watchPosition(function(position) {
-        //const text = position.coords.latitude + " " + position.coords.longitude
-        const text = "https://maps.googleapis.com/maps/api/staticmap?center=" + position.coords.latitude + "," + position.coords.longitude + "&zoom=13&size=300x300&sensor=false&markers=color:red%7C" + position.coords.latitude + "," + position.coords.longitude;
-        Meteor.call('tasks.insert', text);
-      });
-    }
-    (function(){
-        repeatLog()
-        setTimeout(arguments.callee, 5*60*1000); // Log every 5 minutes
-    })();
   }
 
   handleSubmit(event) {
@@ -85,9 +72,10 @@ class Body extends Component {
                     autoComplete="off" />
               Hide Completed
             </label>
-            <button className="btn btn-primary btn" data-title="Delete" onClick={this.getLocation}>
+            <button className="btn btn-primary btn" data-title="Delete">
               Start Location Grab <span className="glyphicon glyphicon-map-marker"></span>
             </button>
+            <CountdownTimer />
           </div>
         </header>
         <div>
