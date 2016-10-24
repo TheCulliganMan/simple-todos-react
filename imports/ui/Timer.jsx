@@ -22,6 +22,8 @@ function getLocation(){
   //})();
 }
 
+var seconds = 60 * 5;
+
 var CountdownTimer = React.createClass({
   getInitialState: function() {
     return {
@@ -32,7 +34,7 @@ var CountdownTimer = React.createClass({
     this.setState({secondsRemaining: this.state.secondsRemaining - 1});
     if (this.state.secondsRemaining < 0) {
       getLocation();
-      this.setState({ secondsRemaining: 10});
+      this.setState({ secondsRemaining: seconds});
     }
   },
   componentDidMount: function() {
@@ -52,6 +54,7 @@ var CountdownTimer = React.createClass({
 });
 
 export default createContainer(() => {
-  return {
-    secondsRemaining : 60 * 5  };
+      return {
+        secondsRemaining : seconds
+      };
   }, CountdownTimer);
